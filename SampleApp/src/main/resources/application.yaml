@@ -1,0 +1,25 @@
+security:
+  jwt:
+    secret-key: aklvckaiercvlkcv9qw898aklfljkafjlu498rufoalvzxvghls@#ldfj1@dskhfakj8KDOFOLidsjv123
+    token-duration: 1D
+logging:
+  level:
+    org.springframework: debug
+allowed:
+  origin: http://localhost:4200
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 25
+    username: admin@gmail.com
+    password: xxxxxx
+    
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/bcbs
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: update
