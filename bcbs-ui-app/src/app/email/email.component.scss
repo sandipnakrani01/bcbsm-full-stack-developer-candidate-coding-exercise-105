@@ -18,11 +18,17 @@
   width: 100%;
 }
 
-.button {
-  width: 100%;
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
 }
 
 .error {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color:red
+}
+
+.success {
+  font-size: 1.5rem;
+  color: green
 }

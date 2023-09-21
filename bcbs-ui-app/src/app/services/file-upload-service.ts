@@ -24,13 +24,15 @@ export class FileUploadService {
       }),
     };
     const formData = new FormData(); 
+    if(emailRequest.file) {
     formData.append("file", emailRequest.file!, emailRequest.file!.name);
+  }
     formData.append("fromEmail", emailRequest.fromEmail);
     formData.append("toEmail", emailRequest.toEmail);
     formData.append("subject", emailRequest.subject);
     formData.append("description", emailRequest.description);
     
-    return this.http.post<FormData>('/api/email',  formData, httpOptions);
+    return this.http.post<FormData>('/api/email',  formData, httpOptions)
  
   }
 }

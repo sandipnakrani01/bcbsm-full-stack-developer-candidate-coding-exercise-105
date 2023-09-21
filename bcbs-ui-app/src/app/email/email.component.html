@@ -1,11 +1,17 @@
-<mat-toolbar color="primary">
-  <span>BCBS</span>
-  <span class="example-spacer"></span>
-</mat-toolbar>
-
 <div class="container"> 
     <h1>File Upload</h1>
     
+    <div class="error" *ngIf="isError">
+      {{ errorMessage }}
+      <br /><br />
+    </div>
+
+    <div class="success" *ngIf="!isError">
+      {{ successMessage }}
+      <br /><br />
+    </div>
+    
+
     <form [formGroup]="fileUploadForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)" class="form">
   
       <mat-form-field class="form-element">
@@ -73,10 +79,10 @@
       
       <input class="form-element" type="file" (change)="onFileChange($event)" />
 
-      <div class="form-element">
-        <button mat-raised-button color="primary" type="submit" class="button">Submit</button>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+        <button type='button' mat-raised-button color="primary" (click)="onViewEmailsClick($event)">View Emails</button>
       </div>
-  
     </form>
   </div>
   

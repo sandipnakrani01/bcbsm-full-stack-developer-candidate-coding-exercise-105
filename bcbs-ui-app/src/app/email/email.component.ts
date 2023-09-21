@@ -3,6 +3,7 @@ import { FileUploadService } from '../services/file-upload-service';
 import {  FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
 import { EmailRequest } from '../domain/email-request';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-email',
@@ -20,9 +21,10 @@ export class EmailComponent {
 
   file: File | null = null;
   errorMessage: string = '';
-  isError = true;
+  successMessage: string = '';
+  isError = false;
 
-  constructor(private fileUploadService: FileUploadService) {}
+  constructor(private fileUploadService: FileUploadService, private router: Router) {}
 
   get form() { return this.fileUploadForm.controls; }
 
@@ -47,20 +49,20 @@ export class EmailComponent {
     emailRequest.description = this.fileUploadForm?.value?.description!;
     emailRequest.file = this.file;
 
-
-    this.fileUploadService.upload(emailRequest).subscribe(() => {
-      this.resetData(formDirective);
-      
-    }, (err) => {
-      this.resetData(formDirective);
-      if(err.status == 401) {
-        this.errorMessage = "Authentication Failure. Please enter correct credentials.";
-        this.isError = true;
-      }
-      else{
-        this.errorMessage = 'Technical Error Occured';
-      }
-    }
+    this.fileUploadService.upload(emailRequest).subscribe(
+        (response) => {
+          this.resetData(formDirective);
+          this.successMessage = "Record created."
+        },
+        (error) => {
+          if(error.status == 401) {
+            this.errorMessage = "Authentication Failure. Please enter correct credentials.";
+            this.isError = true;
+          }
+          else{
+            this.errorMessage = 'Technical Error Occured';
+          }
+        }
     );
   }
 
@@ -68,6 +70,10 @@ export class EmailComponent {
     formDirective.resetForm();
     this.fileUploadForm.reset();
     this.file = null;
+  }
+
+  public onViewEmailsClick(event: any) {
+    this.router.navigate(['/email-listing']);
   }
 
   public onFileChange(event: any) {

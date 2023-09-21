@@ -15,6 +15,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { EmailListingComponent } from './email/email-listing/email-listing.component';
 
 
 @NgModule({
@@ -22,6 +25,7 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     LoginComponent,
     EmailComponent,
+    EmailListingComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
